@@ -67,27 +67,13 @@ symbol_data     <- function(x, range) {
 
 # stock list observation
 StockList  <<- c("2377.TW", "2439.TW", "2498.TW" )
-Shift_MACD <<- 1
-Shift_KD   <<- 2
-Shift_RSI  <<- 3
-Shift_MTM  <<- 4
-Shift_WMA  <<- 5
-#------------- 
-# # Plot buy and sell point
-# # MACD
-# addTA(envlop_MACD, on = 2, col = "red", legend=NULL)
-# addTA(twStock[MACD_trade$buy_peak_t , "Low" ] - 3, pch = 2, type = "p", col = "red", on = 1, legend = NULL)
-# addTA(twStock[MACD_trade$sell_peak_t, "High"] + 3, pch = 6, type = "p", col = "red", on = 1, legend = NULL)
-# #addTA(6*(envlop_MACD)+mean_prise, on = 1, col = "blue", legend = NULL )
-# 
-# # KD
-# # plot 4. KD
-# addTA(c_KD[,"fastK"], col = "red", legend=NULL )
-# addTA(c_KD[,"slowD"], on = 4, col = "blue", legend=NULL)
-# addTA(twStock[KD_trade$buy_limit_t , "Low" ] - 4, pch = 1, type = "p", col = "blue", on = 1, legend = NULL)
-# addTA(twStock[KD_trade$sell_limit_t, "High"] + 4, pch = 1, type = "p", col = "blue", on = 1, legend = NULL)
-# 
-# # RSI
-# addTA(twStock[RSI_trade$buy_limit_t , "Low" ] - 5, pch = 5, type = "p", col = "black", on = 1, legend = NULL)
-# addTA(twStock[RSI_trade$sell_limit_t, "High"] + 5, pch = 5, type = "p", col = "black", on = 1, legend = NULL)
-#-------------
+
+# define the shift value of Tech indicatot vector
+ind <- c("MACD", "KD", "RSI", "MTM", "WMA")
+Shift_indicator <- vector(mode = "list", length = length(ind))
+names(Shift_indicator) <- ind
+for (i in 1:length(Shift_indicator)) { Shift_indicator[[i]] <- i }
+
+
+
+

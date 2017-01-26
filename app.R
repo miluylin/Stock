@@ -52,16 +52,16 @@ server <- function(input, output) {
     MTM_trade  <- TechIndex_trade(TI$MTM , uplimit = input$TI_MTM[2] , lowlimit = input$TI_MTM[1] )
     WMA_trade  <- TechIndex_trade(TI$WMA , uplimit = input$TI_WMA[2] , lowlimit = input$TI_WMA[1] )
     
-    MACD_b     <- Cl(sSymbol())[MACD_trade$buy_peak_t ] - (symbol_m$sd+Shift_MACD)
-    MACD_s     <- Hi(sSymbol())[MACD_trade$sell_peak_t] + (symbol_m$sd+Shift_MACD)
-    KD_b       <- Cl(sSymbol())[KD_trade$buy_limit_t  ] - (symbol_m$sd+Shift_KD)
-    KD_s       <- Hi(sSymbol())[KD_trade$sell_limit_t ] + (symbol_m$sd+Shift_KD)
-    RSI_b      <- Cl(sSymbol())[RSI_trade$buy_limit_t ] - (symbol_m$sd+Shift_RSI)
-    RSI_s      <- Hi(sSymbol())[RSI_trade$sell_limit_t] + (symbol_m$sd+Shift_RSI)
-    MTM_b      <- Cl(sSymbol())[MTM_trade$buy_peak_t ] - (symbol_m$sd+Shift_MTM)
-    MTM_s      <- Hi(sSymbol())[MTM_trade$sell_peak_t] + (symbol_m$sd+Shift_MTM)
-    WMA_b      <- Cl(sSymbol())[WMA_trade$buy_peak_t ] - (symbol_m$sd+Shift_WMA)
-    WMA_s      <- Hi(sSymbol())[WMA_trade$sell_peak_t] + (symbol_m$sd+Shift_WMA)
+    MACD_b     <- Cl(sSymbol())[MACD_trade$buy_peak_t ] - (symbol_m$sd+Shift_indicator$MACD)
+    MACD_s     <- Hi(sSymbol())[MACD_trade$sell_peak_t] + (symbol_m$sd+Shift_indicator$MACD)
+    KD_b       <- Cl(sSymbol())[KD_trade$buy_limit_t  ] - (symbol_m$sd+Shift_indicator$KD)
+    KD_s       <- Hi(sSymbol())[KD_trade$sell_limit_t ] + (symbol_m$sd+Shift_indicator$KD)
+    RSI_b      <- Cl(sSymbol())[RSI_trade$buy_limit_t ] - (symbol_m$sd+Shift_indicator$RSI)
+    RSI_s      <- Hi(sSymbol())[RSI_trade$sell_limit_t] + (symbol_m$sd+Shift_indicator$RSI)
+    MTM_b      <- Cl(sSymbol())[MTM_trade$buy_peak_t  ] - (symbol_m$sd+Shift_indicator$MTM)
+    MTM_s      <- Hi(sSymbol())[MTM_trade$sell_peak_t ] + (symbol_m$sd+Shift_indicator$MTM)
+    WMA_b      <- Cl(sSymbol())[WMA_trade$buy_peak_t  ] - (symbol_m$sd+Shift_indicator$WMA)
+    WMA_s      <- Hi(sSymbol())[WMA_trade$sell_peak_t ] + (symbol_m$sd+Shift_indicator$WMA)
     
     # use plot to plot the addTA function
     plot(addTA(MACD_b, pch = 2, type = "p", col = "red"  , on = 1, legend = NULL))
@@ -173,7 +173,7 @@ ui <- shinyUI(fluidPage(
       mainPanel(
         plotOutput("distPlot", height="650px")
         # ,tableOutput("values")
-         ,tableOutput("values2")
+        # ,tableOutput("values2")
         # ,tableOutput("dispPrint")
         
       )# mainPanel
